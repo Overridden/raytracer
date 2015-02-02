@@ -1,0 +1,167 @@
+.TH RT 1 "8 juin 2013"
+.SH NAME
+rt \- Raytracer
+.SH SYNOPSIS
+.br
+.B raytracer
+.I scene.s
+.SH DESCRIPTION
+.B Raytracer
+is a f**king good program.
+.PP
+Yes, a f**king good program.
+.SH SCENE
+Here is all the object possible in
+.I scene.s
+:
+.PP
+eye, sphere, plane, cylinder, cone and light.
+.SH OBJECT DETAILS
+Each object can take many arguments (we will describe each argument after):
+.PP
+.I eye
+.br
+- position
+.br
+- rotation
+.PP
+.I sphere
+.br
+- position
+.br
+- limit
+.br
+- color
+.br
+- color_annex
+.br
+- color_type
+.br
+- param
+.br
+- shine
+.br
+- texture
+.PP
+.I plane
+.br
+- position
+.br
+- rotation
+.br
+- limit
+.br
+- color
+.br
+- color_annex
+.br
+- color_type
+.br
+- shine
+.br
+- texture
+.PP
+.I cylinder
+.br
+- position
+.br
+- rotation
+.br
+- limit
+.br
+- color
+.br
+- color_annex
+.br
+- color_type
+.br
+- param
+.br
+- shine
+.br
+- texture
+.PP
+.I cone
+.br
+- position
+.br
+- rotation
+.br
+- limit
+.br
+- color
+.br
+- color_annex
+.br
+- color_type
+.br
+- param
+.br
+- shine
+.PP
+.I light
+.br
+- position
+.br
+- color
+.SH ARGUMENT DETAILS
+.B position
+: x,y,z
+.PP
+.B rotation
+: x,y,z
+.PP
+.B limit
+: x,y,z (Symmetry)
+.PP
+.B color
+: 0xRRGGBB (the 1st color in hexadecimal)
+.PP
+.B color_annex
+: 0xRRGGBB (the 2nd color in hexadecimal)
+.PP
+.B color_type
+: 0 (Standard) | 1 (Check Board) | 2 (Ray Vertical) | 3 (Ray Horizontal) | 4 (Texture)
+.PP
+.B param
+: Rayon or Angle
+.PP
+.B shine
+: 0 - 1000 (percentage of the light's color)
+.PP
+.B texture
+: texture.xpm
+.SH EXAMPLE
+eye
+.br
+	position 0,0,0
+.br
+	rotation 0,0,0
+.PP
+sphere
+.br
+	position 100,0,0
+.br
+	color 0xFFFFFF
+.br
+	color_type 0
+.br
+	param 10
+.br
+	shine 700
+.PP
+light
+.br
+	position 80,-50,30
+.br
+	color 0xFF0000
+.PP
+light
+.br
+	position 80,50,30
+.br
+	color 0x0000FF
+.SH AUTHORS
+The
+.B Raytracer
+was created by Alexandre Nguyen, Maxime Guedj, Noel Dovan, Clement Jausselme, Jeremy Cerini and Gael Lastrucci.

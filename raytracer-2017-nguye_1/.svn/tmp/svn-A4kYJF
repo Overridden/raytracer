@@ -1,0 +1,70 @@
+##
+## Makefile for raytracer in /home/guedj_m//project/igraph/raytracer-2017-nguye_1
+##
+## Made by maxime guedj
+## Login   <guedj_m@epitech.net>
+##
+## Started on  Mon May 27 16:18:52 2013 maxime guedj
+## Last update Tue Jun  4 10:18:04 2013 alexandre1 nguyen
+##
+
+NAME	= raytracer
+
+SRCS	= main.c			\
+	init/init_mlx.c			\
+	calc/get_dir_vector.c		\
+	calc/get_pixel_color.c		\
+	calc/set_new_eye.c		\
+	calc/cosinus.c			\
+	calc/light.c			\
+	utils/set_colors.c		\
+	utils/gere_expose.c		\
+	utils/obj_func.c		\
+	utils/obj_list_func.c		\
+	utils/light_func.c		\
+	utils/light_list_func.c		\
+	utils/math_func.c		\
+	utils/point_func.c		\
+	utils/scene_func.c		\
+	utils/color.c			\
+	objs/distance.c			\
+	objs/math_calcul.c		\
+	objs/sphere.c			\
+	objs/cylinder.c			\
+	objs/plane.c			\
+	objs/cone.c			\
+	lib/my_put.c			\
+	parser/check_eye.c		\
+	parser/delete_elem_list.c	\
+	parser/verif_final.c		\
+	parser/error_parser.c		\
+	debug/emul_parsing.c		\
+	# parser/main_parser.c		\
+	# parser/my_conv_base.c		\
+	# parser/my_epure_str.c		\
+	# parser/pars_lights.c		\
+	# parser/pars_objs.c		\
+	# parser/setscene.c		\
+	# parser/GNL/get_next_line.c	\
+	# parser/GNL/gnl_suppli.c		\
+
+OBJS	= $(SRCS:.c=.o)
+
+CFLAGS	= -W -Wall -Werror -Wextra -I. -Iutils/ -Idebug/ -Iparser/ -Icalc/ -Iobjs/ -Iinit -Ilib -g3
+
+CCLIB	= -lm -L/usr/lib64 -lmlx_$(HOSTTYPE) -L/usr/lib64/X11 -lXext -lX11
+
+RM	= rm -f
+
+$(NAME):	$(OBJS)
+	cc -o $(NAME) $(OBJS) $(CCLIB)
+
+all:	$(NAME)
+
+clean:
+	$(RM) $(OBJS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: 	fclean $(NAME)

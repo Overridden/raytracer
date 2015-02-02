@@ -1,0 +1,93 @@
+eye:
+<<<<<<< .mine
+	position: -100,0,0
+	rotation: 0,0,0
+=======
+	position: 0,0,0
+>>>>>>> .r165
+
+sphere:
+<<<<<<< .mine
+	position: 50, -20, -10
+	color: 0xFF0000
+	param: 4
+=======
+ 	position: 100, 20, -20
+ 	color: 0xFFFF00
+ 	param: 10
+>>>>>>> .r165
+
+<<<<<<< .mine
+sphere:
+	position: 50, 20, -10
+	color: 0xFF0000
+	param: 4
+=======
+ 
+;; sphere:
+;;  	position: 90, 10, 0
+;;  	color: 0x029B00
+;;  	param: 4
+>>>>>>> .r165
+
+<<<<<<< .mine
+;; sphere:
+;; 	position: 90, 10, 0
+;; 	color: 0x029B00
+;; 	param: 4
+=======
+cylinder:
+ 	position: 100, 20, -20
+ 	color: 0xFF00FF
+ 	param: 6
+ 	rotation: -10,90,0
+>>>>>>> .r165
+
+<<<<<<< .mine
+;; cylinder:
+;; 	position: 110, -10, 0
+;; 	color: 0xFF930F
+;; 	param: 4
+;; 	rotation: -30,0,0
+
+plane:
+	position: 0,0,20
+	color: 0xFFFFFF
+	rotation: 0,0,0
+	param: 1
+	texture: img/abstrac.xpm
+	
+;; cone:
+;; 	position: 150, -15, 0
+;; 	color: 0xFF0000
+;; 	param: 20
+;; 	rotation: -50,0,0
+=======
+;; plane:
+;; 	position: 0,0,-10
+;; 	color: 0xFFFFFF
+;; 	rotation: 0,0,0
+;; 	param: 0
+	texture: img/abstract.xpm
+>>>>>>> .r165
+
+;; cone:
+;; 	position: 150, -15, 0
+;; 	color: 0xFF0000
+;; 	param: 20
+;; 	rotation: 0,0,0
+
+light:
+	color: 0xFFFFFF
+<<<<<<< .mine
+	position: 80,50,10
+	intensity: 200
+
+light:
+	color: 0xFFFFFF
+	position: 80,-50,10
+	intensity: 200
+=======
+	position: 80,10,0
+	intensity: 1
+>>>>>>> .r165

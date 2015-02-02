@@ -1,0 +1,37 @@
+/*
+** print_scene.c for raytracer in /home/guedj_m//project/igraph/raytracer-2017-nguye_1
+**
+** Made by maxime guedj
+** Login   <guedj_m@epitech.net>
+**
+** Started on  Fri Jun  7 20:46:08 2013 maxime guedj
+<<<<<<< .mine
+** Last update Sat Jun  8 14:53:38 2013 alexandre1 nguyen
+=======
+** Last update Sat Jun  8 14:20:57 2013 jeremy cerini
+>>>>>>> .r213
+*/
+
+#include <stdio.h>
+#include "raytracer.h"
+
+void		print_scene(t_scene *scene)
+{
+  t_obj		*tmp;
+
+  printf("Eye : %f %f %f\n", scene->eye->pos->x, scene->eye->pos->y,
+	 scene->eye->pos->z);
+  printf("Objets presents :\n");
+  tmp = scene->obj;
+  while (tmp)
+    {
+      printf("Obj %d on %f %f %f param %f bright %f color_type %d %x %x\n", tmp->type,
+	     tmp->pos->x, tmp->pos->y, tmp->pos->z, tmp->param, tmp->bright, tmp->color.color_type,
+	     tmp->color.prim_color, tmp->color.sec_color);
+<<<<<<< .mine
+      tmp->color.color_type = COLOR_TEXT;
+=======
+>>>>>>> .r213
+      tmp = tmp->next;
+    }
+}

@@ -1,0 +1,106 @@
+/*
+** main.c for raytracer in /home/guedj_m//project/igraph/raytracer-2017-nguye_1
+**
+** Made by maxime guedj
+** Login   <guedj_m@epitech.net>
+**
+** Started on  Mon May 27 16:31:18 2013 maxime guedj
+** Last update Wed May 29 17:28:30 2013 noel dovan
+*/
+
+#include <mlx.h>
+#include <stdio.h>
+#include "raytracer.h"
+#include "init.h"
+#include "calc.h"
+#include "utils.h"
+#include "lib.h"
+
+int		main()
+{
+  t_scene	*scene;
+
+  scene = creat_scene();
+  scene->mlx = init_mlx();
+  emul_parsing(scene);
+  color_img(scene);
+  mlx_loop(scene->mlx->mlx_ptr);
+  return (0);
+}
+
+void		emul_parsing(t_scene *scene)
+{
+  t_obj		*sphere;
+  /* t_obj		*cylinder; */
+  /* t_obj		*cone; */
+  /* t_obj		*plan; */
+  t_light	*light;
+  t_light	*light1;
+
+  light = creat_light();
+  set_light_pos(light, 1, 0, 0);
+  scene->light = add_light(scene->light, light);
+  scene->eye = creat_obj(4);
+  set_obj_pos(scene->eye, 0, 0, 0);
+  set_obj_rot(scene->eye, 0, 0, 0);
+
+  sphere = creat_obj(0);
+  scene->obj = add_obj(scene->obj, sphere);
+  set_obj_pos(sphere, 100, 0, 0);
+  set_obj_rot(sphere, 0, 0, 0);
+  set_obj_color(sphere, 0xFF0000);
+  sphere->param = 50;
+
+  /* cone = creat_obj(3); */
+  /* scene->obj = add_obj(scene->obj, cone); */
+  /* set_obj_pos(cone, 500, 200, 0); */
+  /* set_obj_rot(cone, 0, 0, 0); */
+  /* set_obj_color(cone, 0x665500); */
+  /* cone->param = 10; */
+
+  /* cylinder = creat_obj(1); */
+  /* scene->obj = add_obj(scene->obj, cylinder); */
+  /* set_obj_pos(cylinder, 500, -200, 0); */
+  /* set_obj_rot(cylinder, 0, 0, 0); */
+  /* set_obj_color(cylinder, 0x665599); */
+  /* cylinder->param = 50; */
+
+  /* plan = creat_obj(2); */
+  /* scene->obj = add_obj(scene->obj, plan); */
+  /* set_obj_pos(plan, 0, 0, -300); */
+  /* set_obj_rot(plan, -10, 0, 0); */
+  /* set_obj_color(plan, 0xFFFFFF); */
+  /* plan->param = 50; */
+  light1 = creat_obj(5);
+  scene->obj = add_obj(scene->obj, light);
+  set_obj_pos(light, 400, 0, 0);
+  set_obj_rot(plan, 0, 0, 0);
+  set_obj_color(light, 0xFFFFFF);
+
+}
+
+void		color_img(t_scene *scene)
+{
+  int		x;
+  int		y;
+  int		color;
+  double	coef;
+
+  y = 0;
+  while (y < WINDOW_HEIGHT)
+    {
+      x = 0;
+      while (x < WINDOW_WIDTH)
+	{
+	  color = get_pixel_color(scene, x, y);
+	  coef = (norme)
+	  set_color(color, scene->mlx, x, y);
+	  x++;
+	}
+      my_putnbr(y * 100 / WINDOW_HEIGHT);
+      my_putstr("%\r");
+      y++;
+    }
+  my_putnbr(y * 100 / WINDOW_HEIGHT);
+  my_putstr("%\r");
+}

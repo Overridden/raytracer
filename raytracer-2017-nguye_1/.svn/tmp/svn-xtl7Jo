@@ -1,0 +1,92 @@
+/*
+** main.c for raytracer in /home/guedj_m//project/igraph/raytracer-2017-nguye_1
+**
+** Made by maxime guedj
+** Login   <guedj_m@epitech.net>
+**
+** Started on  Mon May 27 16:31:18 2013 maxime guedj
+** Last update Wed May 29 12:10:14 2013 noel dovan
+*/
+
+#include <mlx.h>
+#include <stdio.h>
+#include "raytracer.h"
+#include "init.h"
+#include "calc.h"
+#include "utils.h"
+
+int		main()
+{
+  /* int		color; */
+  t_scene	*scene;
+
+  scene = creat_scene();
+  scene->mlx = init_mlx();
+  emul_parsing(scene);
+  color_img(scene);
+  /* color = get_pixel_color(scene, 250, 0); */
+  /* printf("color = %d\n", color); */
+  mlx_loop(scene->mlx->mlx_ptr);
+  return (0);
+}
+
+void		emul_parsing(t_scene *scene)
+{
+  t_obj		*sphere;
+  t_obj		*cylinder;
+  t_obj		*cone;
+  t_obj		*plan;
+
+  scene->eye = creat_obj(4);
+  set_obj_pos(scene->eye, 0, 0, 0);
+  set_obj_rot(scene->eye, 0, 0, 0);
+
+  sphere = creat_obj(0);
+  scene->obj = add_obj(scene->obj, sphere);
+  set_obj_pos(sphere, 550, 0, 0);
+  set_obj_rot(sphere, 0, 0, 0);
+  set_obj_color(sphere, 0xFFFFFF);
+  sphere->param = 100;
+
+  cone = creat_obj(3);
+  scene->obj = add_obj(scene->obj, cone);
+  set_obj_pos(cone, 500, 0, 0);
+  set_obj_rot(cone, 90, 0, 20);
+  set_obj_color(cone, 0x665500);
+  cone->param = 10;
+
+  cylinder = creat_obj(1);
+  scene->obj = add_obj(scene->obj, cylinder);
+  set_obj_pos(cylinder, 300, 0, 2500);
+  set_obj_rot(cylinder, 10, 0, 0);
+  set_obj_color(cylinder, 0x665599);
+  cylinder->param = 30;
+
+  plan = creat_obj(2);
+  scene->obj = add_obj(scene->obj, plan);
+  set_obj_pos(plan, 1, 1, 1);
+  set_obj_rot(plan, 90, 0, 0);
+  set_obj_color(plan, 0xFFFFFF);
+  plan->param = 50;
+
+}
+
+void		color_img(t_scene *scene)
+{
+  int		x;
+  int		y;
+  int		color;
+
+  y = 0;
+  while (y < WINDOW_HEIGHT)
+    {
+      x = 0;
+      while (x < WINDOW_WIDTH)
+	{
+	  color = get_pixel_color(scene, x, y);
+	  set_color(color, scene->mlx, x, y);
+	  x++;
+	}
+      y++;
+    }
+}

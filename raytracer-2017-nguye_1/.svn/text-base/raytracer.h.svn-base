@@ -1,0 +1,128 @@
+/*
+** raytracer.h for raytracer in /home/guedj_m//project/igraph/raytracer-2017-nguye_1
+**
+** Made by maxime guedj
+** Login   <guedj_m@epitech.net>
+**
+** Started on  Mon May 27 14:23:14 2013 maxime guedj
+** Last update Sun Jun  9 14:09:18 2013 jeremy cerini
+*/
+
+#ifndef RT_H_
+# define RT_H_
+
+# define SUCCESS 1
+# define FAIL 0
+# define FAIL_N_EXIT -1
+
+# define WINDOW_NAME "Raytracer de ouf"
+# define WINDOW_WIDTH 1280
+# define WINDOW_HEIGHT 720
+
+# define D 100
+
+# define ABS(x) ((x < 0) ? ((x) * (-1)) : (x))
+
+# define COEF_SHADOW 0.001
+# define COEF_ECART 0.25
+
+# define COLOR_STD 0
+# define COLOR_CHECK_BOARD 1
+# define COLOR_RAYE_V 2
+# define COLOR_RAYE_H 3
+# define COLOR_TEXT 4
+
+enum		obj_type
+  {
+    sphere = 0,
+    cylinder = 1,
+    plane = 2,
+    cone = 3,
+    eyes,
+    spot,
+    erreur
+  };
+
+typedef struct		s_point
+{
+  double		x;
+  double		y;
+  double		z;
+}			t_point;
+
+typedef struct		s_texture
+{
+  char			*texture_name;
+  void			*texture_ptr;
+  char			*data;
+  int			sizeline_bpp[2];
+  int			width;
+  int			height;
+}			t_texture;
+
+typedef struct		s_color
+{
+  char			color_type;
+  unsigned int		prim_color;
+  unsigned int		sec_color;
+}			t_color;
+
+typedef struct		s_obj
+{
+  enum obj_type		type;
+  t_point		*pos;
+  double		n_rot[3][3];
+  double		i_rot[3][3];
+  double		param;
+  double		k[2];
+  t_point		*inter;
+  unsigned int		is_set;
+  t_texture		texture;
+  t_color		color;
+  double		bright;
+  t_point		*limit;
+  struct s_obj		*next;
+}			t_obj;
+
+typedef struct		s_light
+{
+  t_point		*pos;
+  int			color;
+  unsigned char		is_set;
+  struct s_light	*next;
+}			t_light;
+
+typedef struct		s_mlx
+{
+  int			width;
+  int			height;
+  int			bpp;
+  int			line_len;
+  int			endian;
+  void			*img;
+  char			*data;
+  void			*mlx_ptr;
+  void			*win_ptr;
+  char			pixel[WINDOW_HEIGHT][WINDOW_WIDTH];
+}			t_mlx;
+
+typedef struct		s_scene
+{
+  t_obj			*eye;
+  t_obj			*obj;
+  t_light		*light;
+  t_mlx			*mlx;
+}			t_scene;
+
+typedef			void (*t_ptr_func)(t_point *, t_point *, t_obj *);
+
+typedef			void (*t_vec_func)(t_obj *, t_point *);
+
+typedef			int (*t_color_func)(t_obj *);
+
+int		init_threads(t_scene *scene[4]);
+void		*color_img(void *arg);
+int		get_pixel_and_set_color(t_scene *scene, int x, int y);
+void		print_scene(t_scene *scene);
+
+#endif
